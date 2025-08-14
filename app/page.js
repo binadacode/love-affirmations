@@ -7,9 +7,10 @@ export default function Page() {
   const [affirmation, setAffirmation] = useState('Loading...');
   const [shimmer, setShimmer] = useState(false);
 
+  // Fetch a new affirmation from API
   const loadAffirmation = async () => {
     try {
-      const res = await fetch('/api/affirmation');
+      const res = await fetch('/api/affirmation', { cache: 'no-store' }); // ensure fresh fetch
       const data = await res.json();
       setShimmer(true);
       setAffirmation(data.affirmation);
@@ -21,6 +22,7 @@ export default function Page() {
     }
   };
 
+  // On mount: load first affirmation and start heart/sparkle intervals
   useEffect(() => {
     loadAffirmation();
 
@@ -53,6 +55,7 @@ export default function Page() {
     };
   }, []);
 
+  // Burst animation when new affirmation appears
   const createBurst = () => {
     const card = document.querySelector('.card');
     if (!card) return;
@@ -87,7 +90,10 @@ export default function Page() {
     <>
       <Head>
         <title>💖 Daily Affirmations | Spread Joy 💖</title>
-        <meta name="description" content="Get a fresh affirmation daily to brighten your mood!" />
+        <meta
+          name="description"
+          content="Get a fresh affirmation daily to brighten your mood!"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
