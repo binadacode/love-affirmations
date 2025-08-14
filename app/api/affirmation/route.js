@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    // Build the path to your JSON file
     const filePath = path.join(process.cwd(), "data", "affirmations.json");
     const data = fs.readFileSync(filePath, "utf8");
     const affirmations = JSON.parse(data);
@@ -12,7 +11,15 @@ export async function GET() {
     // Pick a random affirmation
     const random = affirmations[Math.floor(Math.random() * affirmations.length)];
 
-    return NextResponse.json({ affirmation: random });
+    return NextResponse.json(
+      { affirmation: random },
+      {
+        status: 200,
+        headers: {
+          "Cache-Control": "no-store", // ❌ important for fresh random data
+        },
+      }
+    );
   } catch (err) {
     console.error(err);
     return NextResponse.json({ error: "Failed to load affirmations" }, { status: 500 });
