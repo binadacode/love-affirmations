@@ -1,16 +1,63 @@
 export default function handler(req, res) {
-  const affirmations = [
-    "You make my world brighter every day. ❤️",
-    "I’m proud of you, always. 🌟",
-    "You are my favorite person in the universe. 🌙",
-    "Your smile is my daily motivation. 😊",
-    "You are beautiful inside and out. 💖",
-    "I love you more than coffee... and that’s saying something ☕❤️",
-    "You inspire me to be the best version of myself. ✨",
-    "With you, every moment feels like magic. ✨"
+  const subjects = [
+    "You",
+    "Your smile",
+    "Your laugh",
+    "Your energy",
+    "Your heart",
+    "Your soul",
+    "Your kindness"
   ];
 
-  const random = affirmations[Math.floor(Math.random() * affirmations.length)];
-  res.status(200).json({ affirmation: random });
-}
+  const verbs = [
+    "brighten",
+    "inspire",
+    "amaze",
+    "light up",
+    "captivate",
+    "enchant",
+    "fill"
+  ];
 
+  const objects = [
+    "my world",
+    "everyone around you",
+    "my heart",
+    "the universe",
+    "every day",
+    "my thoughts",
+    "my dreams"
+  ];
+
+  const adjectives = [
+    "beautifully",
+    "endlessly",
+    "magically",
+    "gently",
+    "wonderfully",
+    "brilliantly"
+  ];
+
+  const emojis = ["❤️","🌟","😊","✨","💖","🥰","💫"];
+
+  const templates = [
+    "{subject} {verb} {object} {adjective} {emoji}",
+    "{subject}'s {object} {verb} me {adjective} {emoji}",
+    "Every day, {subject} {verb} {object} {emoji}",
+    "I love how {subject} {verb} {object} {adjective} {emoji}",
+    "Nothing compares to how {subject} {verb} {object} {emoji}"
+  ];
+
+  const random = (arr) => arr[Math.floor(Math.random() * arr.length)];
+  const template = random(templates);
+
+  // Replace placeholders with random words
+  const affirmation = template
+    .replace("{subject}", random(subjects))
+    .replace("{verb}", random(verbs))
+    .replace("{object}", random(objects))
+    .replace("{adjective}", random(adjectives))
+    .replace("{emoji}", random(emojis));
+
+  res.status(200).json({ affirmation });
+}

@@ -41,8 +41,6 @@
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    /* Floating hearts */
     .heart {
       position: absolute;
       font-size: 1.5rem;
@@ -76,9 +74,7 @@
       setTimeout(() => heart.remove(), 6000);
     }
 
-    // Create hearts continuously
     setInterval(createHeart, 500);
-
     loadAffirmation();
   </script>
 </body>
