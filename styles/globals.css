@@ -1,0 +1,122 @@
+/* Body & Background */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(270deg, #ff9a9e, #fecfef, #fad0c4, #ff9a9e);
+  background-size: 800% 800%;
+  animation: gradientMove 15s ease infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Affirmation Card */
+.card {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(25px);
+  padding: 3rem 2rem;
+  border-radius: 30px;
+  max-width: 90%;
+  text-align: center;
+  color: #fff;
+  font-size: 2rem;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 192, 203, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  animation: fadeScale 0.5s ease;
+  text-shadow: 2px 2px 15px rgba(0,0,0,0.7);
+}
+
+/* Button */
+button {
+  margin-top: 25px;
+  padding: 14px 28px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #ff6f91, #ff9a9e);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 25px rgba(255,105,145,0.6);
+}
+
+/* Floating Hearts */
+.heart {
+  position: absolute;
+  animation: floatUpRotate 7s linear forwards;
+  opacity: 0.8;
+}
+
+@keyframes floatUpRotate {
+  0% { transform: translateY(100vh) rotate(0deg) scale(1); opacity: 1; }
+  100% { transform: translateY(-10vh) rotate(360deg) scale(1.5); opacity: 0; }
+}
+
+/* Sparkles */
+.sparkle {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: sparklePulse 6s linear forwards;
+}
+
+@keyframes sparklePulse {
+  0% { transform: translateY(100vh) scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.9; }
+  100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+}
+
+/* Fade & Scale Animation */
+@keyframes fadeScale {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Shimmer/Glow effect */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255,192,203,0.5) 0%,
+    rgba(255,255,255,0.8) 50%,
+    rgba(255,192,203,0.5) 100%
+  );
+  background-size: 200% auto;
+  color: #fff;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerMove 1s linear;
+}
+
+@keyframes shimmerMove {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .card {
+    font-size: 1.5rem;
+    padding: 2rem 1.5rem;
+  }
+
+  button {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+}
